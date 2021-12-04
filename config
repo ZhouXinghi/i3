@@ -41,7 +41,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec "st -e tmux"
+bindsym $mod+Shift+Return exec st
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -182,7 +183,8 @@ bar {
 }
 
 
-exec_always feh --bg-fill --randomize ~/Pictures/Wallpapers/*
+# exec_always feh --bg-fill --randomize ~/Pictures/Wallpapers/*
+exec_always feh --bg-fill ~/Pictures/Wallpapers/01.jpg 
 
 exec_always xmodmap ~/.xmodmap
 
@@ -191,10 +193,13 @@ bindsym $mod+g exec google-chrome-stable
 new_window 1pixel
 
 for_window [class=".*"] border pixel 0
-gaps inner 15
+gaps inner 10
 
+# picom
 bindsym $mod+p exec picom --experimental-backends
 bindsym $mod+Shift+p exec killall picom
+exec_always picom --experimental-backends
+
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
